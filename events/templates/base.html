@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>College Events</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .header {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      text-align: right;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      margin-left: 10px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  {% if user.is_authenticated %}
+  <div class="header">
+    Welcome, {{ user.username }} |
+    <form method="post" action="{% url 'logout' %}" style="display:inline;">
+      {% csrf_token %}
+      <button type="submit" style="background:none;border:none;color:#007bff;text-decoration:underline;cursor:pointer;">
+        Logout
+      </button>
+    </form>
+  </div>
+{% endif %}
+
+
+  <div class="content">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

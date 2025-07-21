@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>{{ event.title }} - Participants</title></head>
+<body>
+  <h2>Participants for {{ event.title }}</h2>
+  <ul>
+    {% for reg in registrations %}
+      <li>{{ reg.user.username }} ({{ reg.user.email }})</li>
+    {% empty %}
+      <li>No participants yet.</li>
+    {% endfor %}
+  </ul>
+  <p><a href="{% url 'admin_dashboard' %}">Back to dashboard</a></p>
+</body>
+</html>
